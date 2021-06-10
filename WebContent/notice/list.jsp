@@ -5,7 +5,7 @@
   	<nav aria-label="breadcrumb">
   		<ol class="breadcrumb">
     		<li class="breadcrumb-item"><a href="/index.jsp">홈</a></li>
-    		<li class="breadcrumb-item">공지사항</a></li>
+    		<li class="breadcrumb-item">공지사항</li>
   		</ol>
 	</nav>
   	<!-- breadcrumb end -->
@@ -15,6 +15,7 @@
 		<div class ="row">
 			<div class="col-md-12">
 				<%-- table start --%>
+				<h5>공지사항 리스트</h5>
 				<div class="table-responsive">
 				<table class="table table-hover">
 				  <thead>
@@ -29,13 +30,13 @@
 				    <tr>
 				      <th scope="row">1</th>
 				      <td>성영한</td>
-				      <td>제목을 써주세요 제목을 써주세요 제목을 써주세요1</td>
+				      <td><a href="view.jsp">제목을 써주세요 제목을 써주세요 제목을 써주세요1</a></td>
 				      <td>2021/06/10</td>
 				    </tr>
 				    <tr>
 				      <th scope="row">1</th>
 				      <td>성영한1</td>
-				      <td>제목을 써주세요 제목을 써주세요 제목을 써주세요2</td>
+				      <td><a href="view.jsp">제목을 써주세요 제목을 써주세요 제목을 써주세요2</a></td>
 				      <td>2021/06/11</td>
 				    </tr>
 				  </tbody>
@@ -56,7 +57,7 @@
 				</nav>
 				<%-- Pagination end --%>
 				<div class="text-right">
-				<a class="btn btn-outline-success" href="write.jsp" role="button">글쓰기</a>
+					<a class="btn btn-outline-success" href="write.jsp" role="button">글쓰기</a>
 				</div>
 				</div>
 				<%-- table end --%>
