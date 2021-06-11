@@ -1,6 +1,25 @@
 <!doctype html>
 <%@ page pageEncoding="utf-8" %>
 <%@ include file="../inc/header.jsp" %>
+
+
+
+<%
+	String tempPage = request.getParameter("page");
+	int cPage =0;
+	if(tempPage == null || tempPage.length()==0){
+		cPage =1;
+	}try {
+		cPage = Integer.parseInt(tempPage);
+	}catch(NumberFormatException e){
+		cPage =1;
+	}
+	
+	
+	
+%>
+
+
   	<!-- breadcrumb start -->
   	<nav aria-label="breadcrumb">
   		<ol class="breadcrumb">
@@ -32,8 +51,8 @@
 				</form>
 				<div class="text-right">
 					<a class="btn btn-outline-secondary" href="list.jsp" role="button">리스트</a>
-					<a class="btn btn-outline-success" href="modify.jsp" role="button">수정</a>
-					<a class="btn btn-outline-danger" id="deleteNotice" role="button">삭제</a>
+					<a class="btn btn-outline-success" id="saveNotice" role="button">저장</a>
+				
 				</div>
 				
 				<%--form end --%>
@@ -42,4 +61,12 @@
 		<!-- col end -->
 	</div>
   	<!-- container end -->
+  	
+  	<script>
+  		$(function(){
+  			$('#saveNotice').click(function(){
+  				noticeForm.submit();
+  			});
+  		});
+  	</script>
 <%@ include file="../inc/footer.jsp" %>

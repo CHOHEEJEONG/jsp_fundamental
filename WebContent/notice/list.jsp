@@ -24,6 +24,13 @@
 	*/
 	int displayCount = 3; //작성글 3개 보여준다
 	int pageDisplayCount = 6; //아래에 1 2 3 4 5 6 7 8 9 10 next 띄운다
+	int totalRows = 0; //128 가정
+	int currentBlock = 0;
+	int totalBlock = 0;
+	int totalPage = 0;
+	int startPage = 0;
+	int endPage = 0;
+	
 	int start = 0 + (cPage-1)*displayCount;
 	NoticeDao dao = NoticeDao.getInstance();
 	dao.select(start, displayCount);
@@ -69,7 +76,7 @@
 				    <tr>
 				      <th scope="row"><%=dto.getNum() %></th>
 				      <td><%=dto.getWriter() %></td>
-				      <td><a href="view.jsp"><%=dto.getTitle() %></a></td>
+				      <td><a href="view.jsp?num=<%=dto.getNum()%>&page=<%=cPage%>"><%=dto.getTitle() %></a></td>
 				      <td><%=dto.getRegdate() %></td>
 				    </tr>
 				    <%
@@ -89,13 +96,8 @@
 			Previous 1 2 3 4 5 6 7 8 9 10 Next => currentBlock : 1 block
 			Previous 11 12 13 Next			   => currentBlock : 2 block
 		*/
-		int totalRows = dao.getRow(); //128 가정
-		int currentBlock = 0;
-		int totalBlock = 0;
-		int totalPage = 0;
-		int startPage = 0;
-		int endPage = 0;
-
+		
+		totalRows = dao.getRow(); //128개 가정
 		
 		/*
 		if(totalRows%displayCount == 0) {
@@ -141,31 +143,22 @@
 				
 				<nav aria-label="Page navigation example">
 				  <ul class="pagination justify-content-center">
-				  	<%if(currentBlock ==1){ %>
-				    <li class="page-item disabled">
-				      <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-				    </li>
-				    <%}else{ %>
-				    <li class="page-item">
+				    <li class="page-item <%if(currentBlock ==1){ %> disabled<%}%>">
 				      <a class="page-link" href="list.jsp?page=<%=startPage-1 %>" tabindex="-1" aria-disabled="true">Previous</a>
-				    <%} %>
+				    </li>
+				    
 				    <%for(int i=startPage; i<=endPage; i++){ %>
 				    <li class="page-item"><a class="page-link" href="list.jsp?page=<%=i%>"><%=i %></a></li>
 				    <%} %>
-				    <%if(totalBlock==currentBlock){ %>
-				    <li class="page-item  disabled">
-				      <a class="page-link" href="#">Next</a>
-				    </li>
-				    <%}else{ %>
-				    <li class="page-item">
+				    
+				    <li class="page-item  <%if(totalBlock==currentBlock){ %>disabled<%}%>">
 				      <a class="page-link" href="list.jsp?page=<%=endPage+1%>">Next</a>
 				    </li>
-				    <%} %>
 				  </ul>
 				</nav>
 				<%-- Pagination end --%>
 				<div class="text-right">
-					<a class="btn btn-outline-success" href="write.jsp" role="button">글쓰기</a>
+					<a class="btn btn-outline-success" href="write.jsp?page=<%=cPage %>" role="button">글쓰기</a>
 				</div>
 				</div>
 				<%-- table end --%>
