@@ -1,6 +1,6 @@
 <!doctype html>
-<%@page import="kr.or.kpc.dto.NoticeDto"%>
-<%@page import="kr.or.kpc.dao.NoticeDao"%>
+<%@ page import="kr.or.kpc.dto.NoticeDto"%>
+<%@ page import="kr.or.kpc.dao.NoticeDao"%>
 <%@ page pageEncoding="utf-8" %>
 
 
@@ -43,7 +43,7 @@
 		alert('해당글이 존재하지 않습니다.');
 		location.href="list.jsp?page=<%=cPage%>";
 	</script>
-	<% }else{%>	
+	<%}else{%>	
 
 	<%@ include file="../inc/header.jsp" %>
   	<!-- breadcrumb start -->
@@ -63,21 +63,22 @@
 				<%--form start --%>
 				<form name="noticeForm" method="post" action="saveDb.jsp">
 				  <div class="form-group">
-				    작성자 : <%= dto.getWriter() %>
+				    <strong>작성자</strong> : <p><%= dto.getWriter() %></p>
 				  </div>
 				  <div class="form-group">
-				  	날짜 : <%= dto.getRegdate() %>
+				  	<strong>날짜</strong> : <p><%= dto.getRegdate() %></p>
 				  </div>
 				  <div class="form-group">
-				  	제목 : <%= dto.getTitle() %>
+				  	<strong>제목</strong> : <p><%= dto.getTitle() %></p>
 				  </div>
 				  <div class="form-group">
-				    내용 : <%= dto.getContent() %>
+				    <strong>내용</strong> : <p><%= dto.getContent().replaceAll("\n","<br>") %></p>
 				  </div>
 				</form>
-				w<div class="text-right">
-					<a class="btn btn-outline-secondary" href="list.jsp" role="button">리스트</a>
-					<a class="btn btn-outline-success" id="saveNotice" role="button">저장</a>
+				<div class="text-right">
+					<a class="btn btn-outline-secondary" href="list.jsp?page=<%=cPage %>" role="button">리스트</a>
+					<a class="btn btn-outline-success" href="modify.jsp?num=<%=num %>&page=<%=cPage %>" role="button">수정</a>
+					<a class="btn btn-outline-danger" href="deleteDb.jsp?num=<%=num %>&page=<%=cPage %>" role="button">삭제</a>
 				</div>
 				
 				<%--form end --%>

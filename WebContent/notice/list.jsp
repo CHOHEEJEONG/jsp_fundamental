@@ -1,7 +1,7 @@
 <!doctype html>
-<%@page import="kr.or.kpc.dto.NoticeDto"%>
-<%@page import="kr.or.kpc.dao.NoticeDao"%>
-<%@page import="java.util.ArrayList"%>
+<%@ page import="kr.or.kpc.dto.NoticeDto"%>
+<%@ page import="kr.or.kpc.dao.NoticeDao"%>
+<%@ page import="java.util.ArrayList"%>
 <%@ page pageEncoding="utf-8" %>
 <%@ include file="../inc/header.jsp" %>
 <%
