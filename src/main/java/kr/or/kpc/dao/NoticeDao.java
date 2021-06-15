@@ -152,7 +152,7 @@ public class NoticeDao {
 		return list;
 	}
 	
-	public int getRow() {
+	public int getRows() {
 		int resultCount = 0;
 		
 		Connection con = null;

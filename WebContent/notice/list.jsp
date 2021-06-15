@@ -97,7 +97,7 @@
 			Previous 11 12 13 Next			   => currentBlock : 2 block
 		*/
 		
-		totalRows = dao.getRow(); //128개 가정
+		totalRows = dao.getRows(); //128개 가정
 		
 		/*
 		if(totalRows%displayCount == 0) {
