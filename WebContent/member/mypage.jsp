@@ -2,56 +2,25 @@
 <%@page import="kr.or.kpc.dto.CustomerDto"%>
 <%@page import="kr.or.kpc.dao.CustomerDao"%>
 <%@ page pageEncoding="utf-8" %>
+<%@ include file="../inc/header.jsp" %>
 
 <%
-	String tempPage = request.getParameter("page");
-	String tempNum = request.getParameter("num");
-	int cPage = 0;
-	int num = 0;
-	if(tempPage == null || tempPage.length()==0){
-		cPage = 1;
+	if(customerDto == null){
+		response.sendRedirect("/member/login.jsp");
 	}
-	try{
-		cPage = Integer.parseInt(tempPage);
-	}catch(NumberFormatException e){
-		cPage = 1;
-	}
-	
-	if(tempNum == null || tempNum.length()==0){
-		num = -1;
-	}
-	try{
-		num = Integer.parseInt(tempNum);
-	}catch(NumberFormatException e){
-		num = -1;
-	}
-	
-	
 	CustomerDao dao = CustomerDao.getInstance();
-	CustomerDto dto = dao.select(num);//
+	int num = customerDto.getNum();
+	CustomerDto dto = dao.select(customerDto.getNum());//
 	
-	if(dto == null){
-		num = -1;
-	}
+
 	
-	if(num == -1){
-		
-	%>
-	<script>
-		//alert('ss');
-		alert('해당글이 존재하지 않습니다.');
-		location.href="list.jsp?page=<%=cPage%>";
-	</script>
-	<%}else{%>	
-
-
-<%@ include file="../inc/header.jsp" %>
+%>
 
 <!-- breadcrumb start -->
   	<nav aria-label="breadcrumb">
 	  <ol class="breadcrumb">
 	    <li class="breadcrumb-item"><a href="/index.jsp">홈</a></li>
-	    <li class="breadcrumb-item">회원정보 보기</li>
+	    <li class="breadcrumb-item">마이페이지</li>
 	 </ol>
 	</nav>
 	<!-- breadcrumb end -->
@@ -61,8 +30,8 @@
 		<!-- col start -->
 		<div class="row">
 			<div class="col-md-12">
-				<h3>회원정보 보기</h3>
-	        	<form method="post" name="f" action="update.jsp">
+				<h3>마이페이지</h3>
+	        	<form method="post" name="f" action="updateMypage.jsp">
 				  <div class="form-group">
 	                <input type="text" class="form-control" id="email" name="email" value = "<%=dto.getEmail()%>" readonly placeholder="Your Email *" />
 	              	<div class="invalid-feedback" id="errorEmail">
@@ -106,10 +75,8 @@
 	                </select>
 	              </div>
 	              <input type="hidden" name="num" value="<%=dto.getNum() %>">
-	              <input type="hidden" name="page" value="<%=cPage%>">
 				</form>
 				<div class="text-right" style="margin-bottom : 20px;">
-					<a href="list.jsp" class="btn btn-outline-info">리스트</a>
 					<a href="" id="updateCustomer" class="btn btn-outline-success">회원수정</a>
 				</div>
 			</div>
@@ -118,7 +85,6 @@
 	</div>
 	<!-- container end -->
 	<script>
-		<script>
 		$(function(){
 			$('#updateCustomer').click(function(e){
 				e.preventDefault();
@@ -127,4 +93,3 @@
 		});	
 	</script>
 <%@ include file="../inc/footer.jsp"%>
-<%}%>

@@ -1,56 +1,8 @@
 <!doctype html>
 <%@ page pageEncoding="utf-8" %>
 <%@ include file="../inc/header.jsp" %>
+<%=session.getId() %>
 
-<!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-	<script src="/js/jquery-3.6.0.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
-	<title>template</title>
-	<style>
-		
-	</style>
-  </head>
-  <body>
-  
-  	
-  	
-  	<!-- navbar start -->
-  	<nav class="navbar navbar-expand-md navbar-dark" style="background-color : #7952b3">
-	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-	    <span class="navbar-toggler-icon"></span>
-	  </button>
-	
-	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-	    <ul class="navbar-nav mr-auto">
-	      <li class="nav-item">
-	        <a class="nav-link" href="/index.jsp">홈 <span class="sr-only">(current)</span></a>
-	      </li>
-	      <li class="nav-item active">
-	        <a class="nav-link" href="/notice/list.jsp">공지사항</a>
-	      </li>
-	      <li class="nav-item dropdown">
-	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	          Dropdown
-	        </a>
-	        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-	          <a class="dropdown-item" href="#">Action</a>
-	          <a class="dropdown-item" href="#">Another action</a>
-	          <div class="dropdown-divider"></div>
-	          <a class="dropdown-item" href="#">Something else here</a>
-	        </div>
-	      </li>
-	      <li class="nav-item">
-	        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-	      </li>
-	    </ul>
-	    <form class="form-inline my-2 my-lg-0">
-	      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-	      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-	    </form>
-	  </div>
-	</nav>
-  	<!-- navbar end -->
 
   	<!-- breadcrumb start -->
   	<nav aria-label="breadcrumb">
@@ -88,13 +40,29 @@
 	              </div>
 	              <div class="form-group">
 	                <input type="submit" id="loginMember" class="btn btn-primary" value="Login" />
-	              </div>
-	              
+	                <a href = "" class="btn btn-info" id="test">여기</a>	              
+                </div>
 	            </form>
 			</div>
 		</div>
 		<!-- col end -->
 	</div>
 	<!-- container end -->
-
+	<script>
+		$(function(){
+			$('#test').click(function(e){
+				e.preventDefault();
+				if(confirm('진짜로 이동하시겠습니까?')){
+					location.href="http://google.com"
+				}
+			})
+			
+			$('#loginMember').click(function(e){
+				e.preventDefault();
+				
+				f.submit();
+			});
+			
+		});
+	</script>
 <%@ include file="../inc/footer.jsp" %>
